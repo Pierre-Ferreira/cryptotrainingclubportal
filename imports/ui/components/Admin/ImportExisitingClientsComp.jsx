@@ -39,7 +39,7 @@ export default class ImportExisitingClientsComp extends Component {
       } else {
         this.setState({
           feedbackMessage: `SUCCESS: ${result}`,
-        })
+        });
       }
     });
   }
