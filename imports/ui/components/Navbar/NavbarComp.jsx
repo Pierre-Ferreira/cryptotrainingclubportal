@@ -6,7 +6,7 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-} from 'reactstrap';
+} from 'react-bootstrap';
 import AuthenticatedNavigationLinksContainer from '../../containers/Navbar/AuthenticatedNavigationLinksContainer';
 import PublicNavigationLinksContainer from '../../containers/Navbar/PublicNavigationLinksContainer';
 // import './NavbarComp.css';
@@ -33,15 +33,15 @@ export default class NavbarComp extends Component {
       );
     return (
       <div>
-        <Navbar color="faded" className="navbar-dark bg-dark" light expand="md">
-          <NavbarBrand>
+        <Navbar color="faded" className="navbar-dark bg-dark">
+          <Navbar.Brand>
             {/* <NavLink to="/">MATHCOMBAT</NavLink> */}
-            MATHCOMBAT
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+            CryptoLearning.Club
+          </Navbar.Brand>
+          <Navbar.Toggle onClick={this.toggle} />
+          <Navbar.Collapse>
             { renderNavigationLinks(this.props.authenticated) }
-          </Collapse>
+          </Navbar.Collapse>
         </Navbar>
       </div>
     );

@@ -8,7 +8,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
+} from 'react-bootstrap';
 
 export default class AuthenticatedNavigationLinksComp extends Component {
   constructor(props) {
@@ -30,32 +30,8 @@ export default class AuthenticatedNavigationLinksComp extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <NavLink to="/admin/schools_edit">Schools</NavLink>
+          <NavLink to="/admin/import_existing">Import</NavLink>
         </NavItem>
-        <UncontrolledDropdown nav inNavbar>
-          <DropdownToggle nav caret>
-            Modules
-          </DropdownToggle>
-          <DropdownMenu >
-            <DropdownItem>
-              <NavLink to="/tables" style={{ textDecoration: 'none', color: 'black' }}>
-                x en ÷
-              </NavLink>
-            </DropdownItem>
-            <DropdownItem >
-              <NavLink to="/sums" style={{ textDecoration: 'none', color: 'black' }}>
-              + en -
-              </NavLink>
-            </DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>
-              PEMDAS
-            </DropdownItem>
-            <DropdownItem>
-              Tyd
-            </DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
         <NavItem>
           <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
         </NavItem>

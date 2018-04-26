@@ -63,7 +63,6 @@ export default class SignupComp extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="text-center">Sign up</h1>
-              <h4 className="text-center">Kids can be added in backoffice.</h4>
             </div>
             <div className="modal-body">
               <AuthFeedbackMessageComp
@@ -80,7 +79,7 @@ export default class SignupComp extends Component {
                     type="text"
                     id="signup-firstname"
                     className="form-control input-lg"
-                    placeholder="parent name"
+                    placeholder="member name"
                   />
                 </div>
                 <div className="form-group">
@@ -88,7 +87,7 @@ export default class SignupComp extends Component {
                     type="text"
                     id="signup-surname"
                     className="form-control input-lg"
-                    placeholder="parent surname"
+                    placeholder="member surname"
                   />
                 </div>
                 <div className="form-group">

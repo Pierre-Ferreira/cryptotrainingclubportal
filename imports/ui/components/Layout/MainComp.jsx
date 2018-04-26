@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Container } from 'reactstrap';
+import { Grid } from 'react-bootstrap';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 import 'react-router-modal/css/react-router-modal.css';
-import SchoolsEditComp from '../Admin/SchoolsEditComp';
+import ImportExisitingClientsComp from '../Admin/ImportExisitingClientsComp';
 // import TablesMainComp from './components/TablesModule/TablesMainComp';
 // import SumsMainComp from './components/SumsModule/SumsMainComp';
 // components
@@ -30,11 +30,11 @@ export default class MainPage extends Component {
   render() {
     return (
       <div>
-        <Container>
+        <Grid>
           <div>
             <Switch>
               <Route exact path="/" component={HomepageComp} />
-              <AuthenticatedRouteComp exact path="/admin/schools_edit" component={SchoolsEditComp} {...this.props} />
+              <AuthenticatedRouteComp exact path="/admin/import_existing" component={ImportExisitingClientsComp} {...this.props} />
               <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/forgot_password" component={ForgotPasswordContainer} {...this.props} />
@@ -47,7 +47,7 @@ export default class MainPage extends Component {
             <ModalRoute component={SchoolsEditComp} path="/admin/schools_edit" className="test-modal test-modal-foo" />
             <ModalContainer /> */}
           </div>
-        </Container>
+        </Grid>
       </div>
     );
   }

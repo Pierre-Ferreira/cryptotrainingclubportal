@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import {
   Nav,
   NavItem,
-} from 'reactstrap';
+} from 'react-bootstrap';
 
 const PublicNavigationLinksComp = () => (
   <Nav className="ml-auto" navbar>
-    <NavItem>
+    <NavItem className='TESTER'>
       <NavLink to="/auth/login" activeClassName="active">Login</NavLink>
     </NavItem>
     <NavItem>
