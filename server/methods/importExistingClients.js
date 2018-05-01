@@ -4,7 +4,6 @@ const parse = require('csv-parse');
 import { Accounts } from 'meteor/accounts-base';
 import moment from 'moment/moment';
 
-
 Meteor.methods({
   importExistingClients(data) {
     console.log("SERVER DATA:", data);
@@ -41,6 +40,8 @@ Meteor.methods({
             console.log('email:', email);
             console.log('password:', password);
             console.log('profile:', profile);
+            const user = Accounts.findUserByEmail(email);
+            console.log(':::::::::::::::::::::::::::USER:::::::::::', user)
             try {
               let userDetail = {};
               const newUserId = Accounts.createUser({ email, password, profile });
@@ -60,6 +61,8 @@ Meteor.methods({
               };
               deniedUsersArr.push(userDetail);
             }
+            // Check which type of investment they have.
+
           });
           console.log('newUsersArr COUNT:', newUsersArr.length);
           console.log('newUsersArr:', newUsersArr);
