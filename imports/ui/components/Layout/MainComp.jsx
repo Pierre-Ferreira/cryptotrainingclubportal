@@ -4,6 +4,7 @@ import { Grid } from 'react-bootstrap';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 import 'react-router-modal/css/react-router-modal.css';
 import ImportExisitingClientsComp from '../Admin/ImportExisitingClientsComp';
+import blockchainAPIPaymentsContainer from '../../containers/Admin/blockchainAPIPaymentsContainer';
 // import TablesMainComp from './components/TablesModule/TablesMainComp';
 // import SumsMainComp from './components/SumsModule/SumsMainComp';
 // components
@@ -35,6 +36,7 @@ export default class MainPage extends Component {
             <Switch>
               <Route exact path="/" component={HomepageComp} />
               <AuthenticatedRouteComp exact path="/admin/import_existing" component={ImportExisitingClientsComp} {...this.props} />
+              <AuthenticatedRouteComp exact path="/admin/blockchain_api" component={blockchainAPIPaymentsContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/forgot_password" component={ForgotPasswordContainer} {...this.props} />
