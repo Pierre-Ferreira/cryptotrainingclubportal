@@ -6,7 +6,7 @@ import MonthEndPayments from './collection';
 // Return all the players for this user (parent).
 Meteor.publish('month_end_payments', () => {
   const dateString = new Date();
-  dateString.setHours(22, 38, 0, 0);
+  dateString.setHours(11, 0, 0, 0);
   const MEP = MonthEndPayments.find({ TXCompleted: { $gte: dateString } });
   console.log('MEP:', MEP);
   return MEP;

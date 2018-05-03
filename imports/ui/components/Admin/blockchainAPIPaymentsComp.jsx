@@ -330,17 +330,35 @@ export default class BlockchainAPIPaymentsComp extends Component {
   }
 
   render() {
+    // const keys = [
+    //   'Amount',
+    //   'BTC to Pay',
+    //   'BTC Wallet Address',
+    //   'Cell number',
+    //   'Dollar To Pay',
+    //   'Email Address',
+    //   'First Name',
+    //   'Last Name',
+    //   'Satoshi To Pay',
+    //   'TRX FEE',
+    //   'none',
+    // ];
     const keys = [
       'Amount',
       'BTC to Pay',
+      'BTC To Pay (Not rounded)',
       'BTC Wallet Address',
       'Cell number',
       'Dollar To Pay',
+      'Dollar To Pay (Before TX Fees)',
+      'Dollar/BTC',
       'Email Address',
       'First Name',
       'Last Name',
       'Satoshi To Pay',
-      'TRX FEE',
+      'TX Fees',
+      'TX Fees BTC',
+      'TX Fees Satoshi',
       'none',
     ];
     return (
