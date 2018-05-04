@@ -33,15 +33,16 @@ export default class NavbarComp extends Component {
       );
     return (
       <div>
-        <Navbar color="faded" className="navbar-dark bg-dark">
-          <Navbar.Brand>
-            {/* <NavLink to="/">MATHCOMBAT</NavLink> */}
-            CryptoLearning.Club
-          </Navbar.Brand>
-          <Navbar.Toggle onClick={this.toggle} />
-          <Navbar.Collapse>
+        <Navbar inverse collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+              CryptoLearning.Club
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          {/* <Navbar.Collapse> */}
             { renderNavigationLinks(this.props.authenticated) }
-          </Navbar.Collapse>
+          {/* </Navbar.Collapse> */}
         </Navbar>
       </div>
     );

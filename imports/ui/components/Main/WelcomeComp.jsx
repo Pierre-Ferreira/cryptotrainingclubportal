@@ -14,7 +14,6 @@ const WelcomeComp = (props) => {
   return (
     <h1 className="text-center">
       Welcome {userFirstName} {userLastName}
-      YO!!
     </h1>
   );
 };

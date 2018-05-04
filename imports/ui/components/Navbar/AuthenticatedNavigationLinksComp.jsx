@@ -28,7 +28,7 @@ export default class AuthenticatedNavigationLinksComp extends Component {
 
   render() {
     return (
-      <Nav className="ml-auto" navbar>
+      <Nav>
         <NavItem>
           <NavLink to="/admin/blockchain_api">Blockchain API</NavLink>
         </NavItem>

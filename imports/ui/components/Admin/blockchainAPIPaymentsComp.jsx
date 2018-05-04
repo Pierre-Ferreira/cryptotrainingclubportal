@@ -143,19 +143,24 @@ export default class BlockchainAPIPaymentsComp extends Component {
         from: 0,
         amount: clientDetails['Satoshi To Pay'],
         password: settings.blockchain.password,
-        fee_per_byte: '50',
+        second_password: settings.blockchain.second_password,
+        fee_per_byte: '150',
       },
     })
       .then((response) => {
         console.log('PAY ONE:', response);
         clientDetails['TXSuccessfull'] = true;
+        console.log('STEP1');
         clientDetails['TXDATA'] = response.data;
+        console.log('STEP2');
         clientDetails['TXCompleted'] = new Date();
-        this.setState({
-          payOneInfo: response.data,
-          feedbackMessage: '',
-          arrayClients: [...this.state.arrayClients, clientDetails],
-        });
+        console.log('STEP3');
+        // this.setState({
+        //   payOneInfo: response.data,
+        //   feedbackMessage: '',
+        //   arrayClients: [...this.state.arrayClients, clientDetails],
+        // });
+        console.log('WRITING SUCCESS TO DB!')
         const methodName = 'month_end_payment.create';
         Meteor.call(methodName, clientDetails, (err, res) => {
           if (err) {
@@ -168,12 +173,16 @@ export default class BlockchainAPIPaymentsComp extends Component {
       .catch((error) => {
         console.log('PAY ONE ERR:', error);
         clientDetails['TXSuccessfull'] = false;
+        console.log('STEP1');
         clientDetails['TXDATA'] = error;
+        console.log('STEP2');
         clientDetails['TXCompleted'] = new Date();
-        this.setState({
-          feedbackMessage: error.error,
-          arrayClients: [...this.state.arrayClients, clientDetails],
-        });
+        console.log('STEP3');
+        // this.setState({
+        //   feedbackMessage: error.error,
+        //   arrayClients: [...this.state.arrayClients, clientDetails],
+        // });
+        console.log('WRITING FAIL TO DB!')
         const methodName = 'month_end_payment.create';
         Meteor.call(methodName, clientDetails, (err, res) => {
           if (err) {
@@ -329,20 +338,18 @@ export default class BlockchainAPIPaymentsComp extends Component {
       });
   }
 
+  setUserRoles() {
+    const methodName = 'setUserRoles';
+    Meteor.call(methodName, (err, res) => {
+      if (err) {
+        console.log('ROLES UPDATE FAIL:', err);
+      } else {
+        console.log('ROLES UPDATED!:', res);
+      }
+    });
+  }
+
   render() {
-    // const keys = [
-    //   'Amount',
-    //   'BTC to Pay',
-    //   'BTC Wallet Address',
-    //   'Cell number',
-    //   'Dollar To Pay',
-    //   'Email Address',
-    //   'First Name',
-    //   'Last Name',
-    //   'Satoshi To Pay',
-    //   'TRX FEE',
-    //   'none',
-    // ];
     const keys = [
       'Amount',
       'BTC to Pay',
@@ -369,6 +376,11 @@ export default class BlockchainAPIPaymentsComp extends Component {
             <div>{this.state.feedbackMessage}</div>
           </div>
         : ''}
+        <div>
+          <Button bsStyle="primary" onClick={this.setUserRoles}>
+              Update Roles
+          </Button>
+        </div>
         <Button bsStyle="primary" onClick={this.checkAccounts}>
             Account Name
         </Button>
@@ -386,25 +398,28 @@ export default class BlockchainAPIPaymentsComp extends Component {
         />
         {this.state.allowPaymentsRun ? <div>Payments Running!</div> : <div>Payments NOT Running!</div>}
         <Button
-          bsStyle="danger"
+          bsStyle="success"
           onClick={this.payManyOneByOne}
           disabled={this.state.allowPaymentsRun || this.state.balance === 0}
         >
           Run Payments
         </Button>
-        <Button bsStyle="success" onClick={this.stopRunningPayments}>
+        <Button bsStyle="danger" onClick={this.stopRunningPayments}>
           STOP
         </Button>
         <div className="main-results-screen">
           <ul>
             {this.props.MonthEndPayments.map((payment, i, a) => {
               const contactInfo = payment['Email Address'] ? payment['Email Address'] : payment['Cell number'];
+              const walletAddress = payment['BTC Wallet Address'];
+              const btcAmount = Math.round((Number(payment['BTC to Pay']) + 0.0000113) * 10000000) / 10000000;
               const paymentDate = moment.tz(payment['TXCompleted'], 'Africa/Johannesburg').format('DD-MM-YY HH:mm:ss');
               const paymentStr = `${a.length - i}.
                                   (${payment['_id']})
                                   ${payment['First Name']}
                                   ${payment['Last Name']}
-                                  ${contactInfo}
+                                  ${walletAddress}
+                                  (${btcAmount}BTC)
                                   ${paymentDate}
                                   `
               return (
