@@ -19,6 +19,7 @@
     "moment": "^2.22.1",
     "moment-timezone": "^0.5.16",
     "popper.js": "^1.12.9",
+    "prop-types": "^15.6.1",
     "react": "^15.6.2",
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-bootstrap": "^0.32.1",

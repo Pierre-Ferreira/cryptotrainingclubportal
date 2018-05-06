@@ -8,7 +8,6 @@ const mapTrackerToProps = (state, props) => {
   return {
     loggingIn,
     authenticated: !loggingIn && !!Meteor.userId(),
-    currentUser: Meteor.user(),
   };
 };
 

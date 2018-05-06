@@ -6,11 +6,7 @@ import MonthEndPayments from '../../../api/once_off/month_end_payments/collectio
 
 const mapTrackerToProps = (state, props) => {
   const handle = Meteor.subscribe('month_end_payments');
-  const loggingIn = Meteor.loggingIn();
   return {
-    loggingIn,
-    authenticated: !loggingIn && !!Meteor.userId(),
-    currentUser: Meteor.user(),
     loading: !handle.ready(),
     MonthEndPayments: MonthEndPayments.find({}, {
       sort: { TXCompleted: -1 },

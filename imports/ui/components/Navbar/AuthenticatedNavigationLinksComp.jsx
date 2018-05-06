@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { NavLink } from 'react-router-dom';
+
 import {
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'react-bootstrap';
 
 export default class AuthenticatedNavigationLinksComp extends Component {
@@ -29,16 +27,19 @@ export default class AuthenticatedNavigationLinksComp extends Component {
   render() {
     return (
       <Nav>
-        <NavItem>
-          <NavLink to="/admin/blockchain_api">Blockchain API</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/admin/import_existing">Import</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
-        </NavItem>
+        {this.props.userIsSuperAdmin ?
+          <span>
+            <NavLink to="/admin/blockchain_api">Blockchain API</NavLink>
+            <NavLink to="/admin/import_existing">Import</NavLink>
+          </span>
+           : ''}
+        <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
       </Nav>
     );
   }
 }
+
+AuthenticatedNavigationLinksComp.propTypes = {
+  userIsSuperAdmin: PropTypes.bool.isRequired,
+  toHomepage: PropTypes.func.isRequired,
+};

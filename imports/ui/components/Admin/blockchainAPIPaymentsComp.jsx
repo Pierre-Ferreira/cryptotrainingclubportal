@@ -396,7 +396,10 @@ export default class BlockchainAPIPaymentsComp extends Component {
           onDataUploaded={this.uploadDataToState}
           render={onChange => <input type="file" onChange={onChange} />}
         />
-        {this.state.allowPaymentsRun ? <div>Payments Running!</div> : <div>Payments NOT Running!</div>}
+        {this.state.allowPaymentsRun ?
+          <div>Payments Running!</div> :
+          <div>Payments NOT Running!</div>
+        }
         <Button
           bsStyle="success"
           onClick={this.payManyOneByOne}

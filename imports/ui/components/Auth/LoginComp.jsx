@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
-
+import './AuthModals.less';
 
 export default class LoginComp extends Component {
   constructor(props) {
@@ -11,8 +12,13 @@ export default class LoginComp extends Component {
       feedbackMessage: '',
       resendVerificationMessages: '',
     };
+    this.close = this.close.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.resendVerificationEmail = this.resendVerificationEmail.bind(this);
+  }
+
+  close() {
+    this.props.history.push('/');
   }
 
   resendVerificationEmail() {
@@ -44,6 +50,10 @@ export default class LoginComp extends Component {
     e.preventDefault();
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
+    this.setState({
+      feedbackMessage: 'Busy...',
+      feedbackMessageType: 'success',
+    });
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         this.setState({
@@ -72,6 +82,7 @@ export default class LoginComp extends Component {
       <div className="modal show">
         <div className="modal-dialog">
           <div className="modal-content">
+            <Button color="danger" className="pull-right" size="lg" onClick={this.close}>X</Button>
             <div className="modal-header">
               <h1 className="text-center">Login</h1>
             </div>

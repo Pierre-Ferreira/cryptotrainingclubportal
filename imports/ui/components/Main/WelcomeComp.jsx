@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WelcomeComp = (props) => {
-  const { currentUser } = props;
+  const currentUser = Meteor.user();
   let userFirstName = '';
   let userLastName = '';
   if (currentUser && currentUser.profile && currentUser.profile.firstName) {

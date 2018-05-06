@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-} from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Navbar } from 'react-bootstrap';
 import AuthenticatedNavigationLinksContainer from '../../containers/Navbar/AuthenticatedNavigationLinksContainer';
 import PublicNavigationLinksContainer from '../../containers/Navbar/PublicNavigationLinksContainer';
-// import './NavbarComp.css';
+import './NavbarComp.less';
 
 export default class NavbarComp extends Component {
   constructor(props) {
@@ -33,18 +27,24 @@ export default class NavbarComp extends Component {
       );
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
+        <Navbar inverse fluid id="navbar-comp">
           <Navbar.Header>
             <Navbar.Brand>
-              CryptoLearning.Club
+              Crypto Learning Club
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          {/* <Navbar.Collapse> */}
-            { renderNavigationLinks(this.props.authenticated) }
-          {/* </Navbar.Collapse> */}
+          { renderNavigationLinks(this.props.authenticated) }
         </Navbar>
       </div>
     );
   }
 }
+
+NavbarComp.propTypes = {
+  authenticated: PropTypes.bool,
+};
+
+NavbarComp.defaultProps = {
+  authenticated: false,
+};

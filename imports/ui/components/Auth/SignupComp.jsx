@@ -26,7 +26,6 @@ export default class SignupComp extends Component {
     const profile = {
       firstName,
       lastName,
-      tester1: 'NOTHING!',
     };
     // const FEEDBACK = Meteor.users.simpleSchema().namedContext().validate({ emails: email, password, profile});
     // //.validate({ emails: email, password, profile}, {modifier: false});

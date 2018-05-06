@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const PublicRouteComp = ({
-  loggingIn,
-  authenticated,
   component,
   ...rest
 }) => (
   <Route
     {...rest}
     render={(props) => {
-      if (loggingIn) return <div />;
+      const loggingIn = Meteor.loggingIn();
+      const authenticated = !loggingIn && !!Meteor.userId();
       return !authenticated ?
       (React.createElement(component, { ...props, loggingIn, authenticated })) :
       (<Redirect to="/main/welcome" />);
@@ -18,10 +18,8 @@ const PublicRouteComp = ({
   />
 );
 
-// PublicRouteComp.propTypes = {
-//   loggingIn: PropTypes.bool,
-//   authenticated: PropTypes.bool,
-//   component: PropTypes.func,
-// };
+PublicRouteComp.propTypes = {
+  component: PropTypes.func.isRequired,
+};
 
 export default PublicRouteComp;

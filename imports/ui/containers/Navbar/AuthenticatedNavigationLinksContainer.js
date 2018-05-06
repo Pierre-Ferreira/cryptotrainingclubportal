@@ -4,11 +4,8 @@ import { push } from 'react-router-redux';
 import AuthenticatedNavigationLinksComp from '../../components/Navbar/AuthenticatedNavigationLinksComp';
 
 const mapTrackerToProps = (state, props) => {
-  const loggingIn = Meteor.loggingIn();
   return {
-    loggingIn,
-    authenticated: !loggingIn && !!Meteor.userId(),
-    currentUser: Meteor.user(),
+    userIsSuperAdmin: Roles.userIsInRole(Meteor.userId(), 'superadmin'),
   };
 };
 
