@@ -9,10 +9,11 @@ import blockchainAPIPaymentsContainer from '../../containers/Admin/blockchainAPI
 // import SumsMainComp from './components/SumsModule/SumsMainComp';
 // components
 import HomepageComp from '../Main/HomepageComp';
-import WelcomeComp from '../../containers/Main/WelcomeContainer';
+import WelcomeContainer from '../../containers/Main/WelcomeContainer';
 import SignupContainer from '../../containers/Auth/SignupContainer';
 import LoginContainer from '../../containers/Auth/LoginContainer';
 import ResetPasswordContainer from '../../containers/Auth/ResetPasswordContainer';
+import VerifyEmailContainer from '../../containers/Auth/VerifyEmailContainer'
 import ForgotPasswordContainer from '../../containers/Auth/ForgotPasswordContainer';
 import AuthenticatedRouteComp from '../Routes/AuthenticatedRouteComp';
 import PublicRouteComp from '../Routes/PublicRouteComp';
@@ -38,9 +39,10 @@ export default class MainPage extends Component {
               <AuthenticatedRouteComp exact path="/admin/blockchain_api" component={blockchainAPIPaymentsContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
-              <PublicRouteComp exact path="/auth/forgot_password" component={ForgotPasswordContainer} {...this.props} />
+              <PublicRouteComp exact path="/forgot_password" component={ForgotPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/reset-password/:token" component={ResetPasswordContainer} {...this.props} />
-              <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeComp} {...this.props} />
+              <PublicRouteComp exact path="/auth/verified-email" component={VerifyEmailContainer} {...this.props} />
+              <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeContainer} {...this.props} />
               {/* <Route exact path="/" component={AppContainer} /> */}
             </Switch>
             {/* <ModalRoute component={LoginComp} path="/auth/login" className="test-modal test-modal-foo" />

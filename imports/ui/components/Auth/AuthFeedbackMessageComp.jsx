@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './AuthFeedbackMessageComp.less';
 
 const AuthFeedbackMessageComp = (props) => {
   const feedbackMessageType = (props.feedbackMessageType) ? `alert-${props.feedbackMessageType}` : 'alert-danger';
@@ -11,7 +12,7 @@ const AuthFeedbackMessageComp = (props) => {
   // Check if a feedback message was set.
   if (feedbackMessage.trim().length !== 0) {
     return (
-      <div className={`alert ${feedbackMessageType} fade in`}>
+      <div id="auth-feedback-message" className={`alert ${feedbackMessageType} fade in`}>
         {feedbackMessage}
         {/* Check if 'forgot password' link should be displayed */}
         {tokenExpiredFlag
@@ -20,7 +21,7 @@ const AuthFeedbackMessageComp = (props) => {
         }
         {/* Check if 'resend verification email' link should be displayed */}
         {resendVerificationMessages
-          ? <span><a onClick={resendVerificationEmailFN}> {resendVerificationMessages}</a></span>
+          ? <span onClick={resendVerificationEmailFN} className='resend-verification-link'> {resendVerificationMessages}</span>
           : ''
         }
       </div>
