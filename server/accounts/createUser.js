@@ -31,7 +31,7 @@ Accounts.onCreateUser((options, user) => {
   if (cellNo.length === 0) throw new Meteor.Error(403, 'Cell No is required');
   if (options.email.length === 0) throw new Meteor.Error(403, 'Email is required');
   if (options.username.length === 0) throw new Meteor.Error(403, 'Username is required');
-  if (introducersUserId.length === 0) throw new Meteor.Error(403, 'Introducers UserId is required');
+  if (introducersUserId.length === 0) throw new Meteor.Error(403, 'Introducer is required');
   if (walletAddress.length === 0) throw new Meteor.Error(403, 'Bitcoin Wallet Address is required');
   // Generate CLCNo.
   const usersCount = Meteor.users.find().count()

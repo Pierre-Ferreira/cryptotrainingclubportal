@@ -15,6 +15,7 @@ import LoginContainer from '../../containers/Auth/LoginContainer';
 import ResetPasswordContainer from '../../containers/Auth/ResetPasswordContainer';
 import VerifyEmailContainer from '../../containers/Auth/VerifyEmailContainer'
 import ForgotPasswordContainer from '../../containers/Auth/ForgotPasswordContainer';
+import IntroducerSearchContainer from '../../containers/Auth/IntroducerSearchContainer';
 import AuthenticatedRouteComp from '../Routes/AuthenticatedRouteComp';
 import PublicRouteComp from '../Routes/PublicRouteComp';
 // import { withHistory, Link } from 'react-router-dom';
@@ -37,18 +38,14 @@ export default class MainPage extends Component {
               <Route exact path="/" component={HomepageComp} />
               <AuthenticatedRouteComp exact path="/admin/import_existing" component={ImportExisitingClientsComp} {...this.props} />
               <AuthenticatedRouteComp exact path="/admin/blockchain_api" component={blockchainAPIPaymentsContainer} {...this.props} />
-              <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
+              <PublicRouteComp exact path="/auth/signup/introducer_search" component={IntroducerSearchContainer} {...this.props} />
+              <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/forgot_password" component={ForgotPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/reset-password/:token" component={ResetPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/verified-email" component={VerifyEmailContainer} {...this.props} />
               <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeContainer} {...this.props} />
-              {/* <Route exact path="/" component={AppContainer} /> */}
             </Switch>
-            {/* <ModalRoute component={LoginComp} path="/auth/login" className="test-modal test-modal-foo" />
-            <ModalRoute component={SignupComp} path="/auth/signup" className="test-modal test-modal-foo" />
-            <ModalRoute component={SchoolsEditComp} path="/admin/schools_edit" className="test-modal test-modal-foo" />
-            <ModalContainer /> */}
           </div>
         </Grid>
       </div>
