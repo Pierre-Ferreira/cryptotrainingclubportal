@@ -39,7 +39,7 @@ export default class MainPage extends Component {
               <AuthenticatedRouteComp exact path="/admin/blockchain_api" component={blockchainAPIPaymentsContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/login" component={LoginContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
-              <PublicRouteComp exact path="/forgot_password" component={ForgotPasswordContainer} {...this.props} />
+              <PublicRouteComp exact path="/auth/forgot_password" component={ForgotPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/reset-password/:token" component={ResetPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/verified-email" component={VerifyEmailContainer} {...this.props} />
               <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeContainer} {...this.props} />
