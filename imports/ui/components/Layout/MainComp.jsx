@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { Grid } from 'react-bootstrap';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 import 'react-router-modal/css/react-router-modal.css';
@@ -35,7 +35,8 @@ export default class MainPage extends Component {
         <Grid>
           <div>
             <Switch>
-              <Route exact path="/" component={HomepageComp} />
+              {/* <Route exact path="/" component={HomepageComp} /> */}
+              <PublicRouteComp exact path="/" component={HomepageComp} />
               <AuthenticatedRouteComp exact path="/admin/import_existing" component={ImportExisitingClientsComp} {...this.props} />
               <AuthenticatedRouteComp exact path="/admin/blockchain_api" component={blockchainAPIPaymentsContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/signup" component={SignupContainer} {...this.props} />
@@ -45,6 +46,7 @@ export default class MainPage extends Component {
               <PublicRouteComp exact path="/auth/reset-password/:token" component={ResetPasswordContainer} {...this.props} />
               <PublicRouteComp exact path="/auth/verified-email" component={VerifyEmailContainer} {...this.props} />
               <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeContainer} {...this.props} />
+              <Redirect to="/"/>
             </Switch>
           </div>
         </Grid>

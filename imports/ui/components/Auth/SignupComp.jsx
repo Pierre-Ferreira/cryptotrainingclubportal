@@ -12,13 +12,10 @@ export default class SignupComp extends Component {
     this.state = {
       feedbackMessage: '',
     };
+    this.close = this.close.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showIntroducerSearchModal = this.showIntroducerSearchModal.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
-  }
-
-  showIntroducerSearchModal() {
-    this.props.history.push('/auth/signup/introducer_search');
   }
 
   onChangeInput() {
@@ -37,6 +34,14 @@ export default class SignupComp extends Component {
       walletAddress,
     };
     this.props.saveSignupInfoState(signupInfo);
+  }
+
+  showIntroducerSearchModal() {
+    this.props.history.push('/auth/signup/introducer_search');
+  }
+
+  close() {
+    this.props.history.push('/');
   }
 
   handleSubmit(e) {
@@ -90,6 +95,9 @@ export default class SignupComp extends Component {
         <div className="modal show">
           <div className="modal-dialog">
             <div className="modal-content">
+              <div className="close-button-area">
+                <Button color="danger" className="pull-right close-button" size="lg" onClick={this.close}>X</Button>
+              </div>
               <div className="container">
                 <div className="row">
                   <div className="modal-header col-xs-12">

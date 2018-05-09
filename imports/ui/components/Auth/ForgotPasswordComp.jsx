@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
+import { Button } from 'react-bootstrap';
 import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 import './ForgotPasswordComp.less';
 
@@ -10,7 +11,12 @@ export default class ForgotPasswordComp extends Component {
     this.state = {
       feedbackMessage: '',
     };
+    this.close = this.close.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  close() {
+    this.props.history.push('/');
   }
 
   handleSubmit(e) {
@@ -42,6 +48,9 @@ export default class ForgotPasswordComp extends Component {
         <div className="modal show">
           <div className="modal-dialog">
             <div className="modal-content">
+              <div className="close-button-area">
+                <Button color="danger" className="pull-right close-button" size="lg" onClick={this.close}>X</Button>
+              </div>
               <div className="modal-header">
                 <h1 className="text-center">Forgot Password</h1>
               </div>

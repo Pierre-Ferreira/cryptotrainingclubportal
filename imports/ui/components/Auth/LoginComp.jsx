@@ -83,7 +83,9 @@ export default class LoginComp extends Component {
         <div className="modal show">
           <div className="modal-dialog">
             <div className="modal-content">
-              <Button color="danger" className="pull-right" size="lg" onClick={this.close}>X</Button>
+              <div className="close-button-area">
+                <Button color="danger" className="pull-right close-button" size="lg" onClick={this.close}>X</Button>
+              </div>
               <div className="modal-header">
                 <h1 className="text-center">Login</h1>
               </div>
