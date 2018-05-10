@@ -4,6 +4,7 @@ import Fuse from 'fuse.js';
 
 Meteor.methods({
   introducerSearchDB(searchValue) {
+    check(searchValue, String);
     const allUsers = Meteor.users.find(
       {},
       { fields: { firstName: 1, lastName: 1, clcNo: 1 } },

@@ -10,12 +10,14 @@ const mapTrackerToProps = (state, props) => {
 
 function mapStateToProps(state) {
   return {
+    userInfo: state.UserInfo,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     toLoginPage: () => dispatch(push('/login')),
+    saveUserInfoState: userInfo => dispatch({ type: 'SAVE_USER_INFO', userInfo }),
   };
 }
 

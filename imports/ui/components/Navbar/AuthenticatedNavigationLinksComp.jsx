@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { NavLink } from 'react-router-dom';
+import './AuthenticatedNavigationLinksComp.less';
 
 import {
   Nav,
   NavItem,
+  NavDropdown,
+  MenuItem,
 } from 'react-bootstrap';
 
 export default class AuthenticatedNavigationLinksComp extends Component {
@@ -28,17 +31,37 @@ export default class AuthenticatedNavigationLinksComp extends Component {
     let authMenuItems = '';
     if (this.props.userIsSuperAdmin) {
       authMenuItems = (
-        <Nav>
-          <NavLink to="/admin/blockchain_api">Blockchain API</NavLink>
-          <NavLink to="/admin/import_existing">Import</NavLink>
+        <div id="superuser-menu-items">
+          <NavDropdown eventKey={3} title="Admin" id="basic-nav-dropdown">
+            <MenuItem eventKey="1">
+              <NavLink to="/admin/blockchain_api">Blockchain API</NavLink>
+            </MenuItem>
+            <MenuItem eventKey="2">
+              <NavLink to="/admin/import_existing">Import</NavLink>
+            </MenuItem>
+          </NavDropdown>
           <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
-        </Nav>
+        </div>
       );
     } else {
       authMenuItems = (
-        <Nav>
-          <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
-        </Nav>
+        <div id="clients-menu-items">
+          <NavDropdown eventKey={3} title={this.props.username} id="basic-nav-dropdown">
+            <MenuItem eventKey="1">
+              <NavLink to="/settings">Settings</NavLink>
+            </MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey="2">
+              <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
+            </MenuItem>
+
+            {/* <MenuItem eventKey="1">Action</MenuItem>
+            <MenuItem eventKey="2">Another action</MenuItem>
+            <MenuItem eventKey="3">Something else here</MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey="4">Separated link</MenuItem> */}
+          </NavDropdown>
+        </div>
       );
     }
     return authMenuItems;

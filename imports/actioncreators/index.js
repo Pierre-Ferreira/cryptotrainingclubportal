@@ -1,14 +1,24 @@
 import * as types from '../constants/ActionTypes';
 
-export const saveIntroducerInfo = introducerInfo => ({
-  type: types.SAVE_INTRODUCER_INFO,
-  introducerInfo,
-});
-
-export const saveSignupInfo = signupInfo => ({
-  type: types.SAVE_SIGNUP_INFO,
-  signupInfo,
-});
+// export const saveUserPersonalInfo = userPersonalInfo => ({
+//   type: types.SAVE_USER_PERSONAL_INFO2,
+//   userPersonalInfo,
+// });
+//
+// export const saveUserInfo = userInfo => ({
+//   type: types.SAVE_USER_INFO,
+//   userInfo,
+// });
+//
+// export const saveIntroducerInfo = introducerInfo => ({
+//   type: types.SAVE_INTRODUCER_INFO,
+//   introducerInfo,
+// });
+//
+// export const saveSignupInfo = signupInfo => ({
+//   type: types.SAVE_SIGNUP_INFO,
+//   signupInfo,
+// });
 // const questionsAnswered = 0;
 
 // export const saveGameSettings = (

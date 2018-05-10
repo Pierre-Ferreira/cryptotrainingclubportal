@@ -1,20 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-// import gameSettings from './GameSettings';
-// import gameAnswers from './GameAnswers';
-// import gameCurrentAnswer from './GameCurrentAnswer';
-// import gameScore from './GameScore';
+import UserPersonalInfo from './UserPersonalInfo';
+import UserInfo from './UserInfo';
 import IntroducerInfo from './IntroducerInfo';
 import SignupInfo from './SignupInfo';
 
-const gameInfo = combineReducers({
-  // gameSettings,
-  // gameAnswers,
-  // gameCurrentAnswer,
-  // gameScore,
+const generalInfo = combineReducers({
+  UserInfo,
+  UserPersonalInfo,
   IntroducerInfo,
   SignupInfo,
   routing: routerReducer,
 });
 
-export default gameInfo;
+export default generalInfo;

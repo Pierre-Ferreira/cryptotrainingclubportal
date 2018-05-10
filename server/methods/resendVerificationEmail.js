@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
   resendVerificationEmail(email) {
+    check(email, String);
     let userId = '';
     const user = Accounts.findUserByEmail(email);
     if (user && user._id) {

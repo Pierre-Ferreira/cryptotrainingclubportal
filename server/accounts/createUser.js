@@ -8,10 +8,11 @@ Accounts.validateNewUser((user) => {
   }
 });
 // Accounts.validateNewUser((user) => {
-//   if (user.username && user.username.length >= 5) {
+//   if (user.password && user.password.length >= 5) {
 //     return true;
 //   } else {
-//     throw new Meteor.Error(403, 'Username must have at least 5 characters');
+//     console.log('PASSWORD:', user.services.password.bcrypt)
+//     throw new Meteor.Error(403, 'Password must have at least 6 characters');
 //   }
 // });
 
