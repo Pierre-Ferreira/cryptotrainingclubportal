@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Alert, Button } from 'react-bootstrap';
-import './EmailInfoComp.less';
+import './PasswordResetComp.less';
 
-export default class EmailInfoComp extends Component {
+export default class PasswordResetComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       feedbackMessage: '',
-      email: '',
+      password: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({
-      email: this.props.userInfo.email,
-    });
-  }
-
   onChangeInput() {
-    const email = document.getElementById('email-info').value;
-    this.setState({ email });
+    const password = document.getElementById('password').value;
+    this.setState({ password });
   }
 
   handleSubmit(e) {
@@ -31,40 +25,43 @@ export default class EmailInfoComp extends Component {
       feedbackMessage: 'Busy...',
       feedbackMessageType: 'success',
     });
-    let { email } = this.state;
-    email = email.trim();
-    const emailInfo = {
-      emailNew: email,
-      emailOld: this.props.userInfo.email,
-    };
-    Meteor.call('updateEmailInfo', emailInfo, (err, result) => {
-      if (err) {
-        console.log('updateEmailInfo ERR:', err);
-        this.setState({
-          feedbackMessage: `ERROR: ${err.reason}`,
-          feedbackMessageType: 'danger',
-        });
-      } else {
-        console.log('updateEmailInfo:', result);
-        this.setState({
-          feedbackMessage: 'Email Address Saved!',
-          feedbackMessageType: 'success',
-        });
-        this.props.saveEmailInfoState(emailInfo)
-        setTimeout(() => {
+    let { password } = this.state;
+    password = password.trim();
+    if (password.length === 0) {
+      this.setState({
+        feedbackMessage: 'ERROR: Password is required',
+        feedbackMessageType: 'danger',
+      });
+    } else {
+      Meteor.call('updatePassword', Accounts._hashPassword(password), (err, result) => {
+        if (err) {
+          console.log('updatePassword ERR:', err);
           this.setState({
-            feedbackMessage: '',
-            feedbackMessageType: '',
+            feedbackMessage: `ERROR: ${err.reason}`,
+            feedbackMessageType: 'danger',
           });
-        }, 3000);
-      }
-    });
+        } else {
+          console.log('updatePassword:', result);
+          this.setState({
+            feedbackMessage: 'Password was reset!',
+            feedbackMessageType: 'success',
+            password: '',
+          });
+          setTimeout(() => {
+            this.setState({
+              feedbackMessage: '',
+              feedbackMessageType: '',
+            });
+          }, 3000);
+        }
+      });
+    }
   }
 
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
     return (
-      <div id="email-info-comp">
+      <div id="password-reset-comp">
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
@@ -80,20 +77,20 @@ export default class EmailInfoComp extends Component {
               >
                 <div className="form-group">
                   <input
-                    type="email"
-                    id="email-info"
+                    type="text"
+                    id="password"
                     className="form-control input-lg"
-                    placeholder="member email"
+                    placeholder="new password"
                     onChange={this.onChangeInput}
-                    value={this.state.email}
+                    value={this.state.password}
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="submit"
-                    id="email-info-button"
+                    id="password-reset-button"
                     className="btn btn-lg btn-primary btn-block"
-                    value="SAVE EMAIL ADDRESS"
+                    value="RESET PASSWORD"
                   />
                 </div>
               </form>

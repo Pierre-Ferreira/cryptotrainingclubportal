@@ -48,12 +48,6 @@ export default class PersonalInfoComp extends Component {
       lastName,
       cellNo,
     });
-    // const personalInfo = {
-    //   firstName,
-    //   lastName,
-    //   cellNo,
-    // };
-    // this.props.saveUserPersonalInfoState(personalInfo);
   }
 
   handleSubmit(e) {
@@ -62,10 +56,18 @@ export default class PersonalInfoComp extends Component {
       feedbackMessage: 'Busy...',
       feedbackMessageType: 'success',
     });
+    let {
+      firstName,
+      lastName,
+      cellNo,
+    } = this.state;
+    firstName = firstName.trim();
+    lastName = lastName.trim();
+    cellNo = cellNo.trim();
     const personalInfo = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      cellNo: this.state.cellNo,
+      firstName,
+      lastName,
+      cellNo,
     };
     Meteor.call('updateUserPersonalInfo', personalInfo, (err, result) => {
       if (err) {

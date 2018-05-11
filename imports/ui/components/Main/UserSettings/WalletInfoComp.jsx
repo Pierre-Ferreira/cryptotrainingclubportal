@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Alert, Button } from 'react-bootstrap';
-import './EmailInfoComp.less';
+import './WalletInfoComp.less';
 
-export default class EmailInfoComp extends Component {
+export default class WalletInfoComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       feedbackMessage: '',
-      email: '',
+      walletAddress: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
@@ -16,13 +16,13 @@ export default class EmailInfoComp extends Component {
 
   componentWillMount() {
     this.setState({
-      email: this.props.userInfo.email,
+      walletAddress: this.props.userInfo.walletAddress,
     });
   }
 
   onChangeInput() {
-    const email = document.getElementById('email-info').value;
-    this.setState({ email });
+    const walletAddress = document.getElementById('wallet-address').value;
+    this.setState({ walletAddress });
   }
 
   handleSubmit(e) {
@@ -31,26 +31,25 @@ export default class EmailInfoComp extends Component {
       feedbackMessage: 'Busy...',
       feedbackMessageType: 'success',
     });
-    let { email } = this.state;
-    email = email.trim();
-    const emailInfo = {
-      emailNew: email,
-      emailOld: this.props.userInfo.email,
+    let { walletAddress } = this.state;
+    walletAddress = walletAddress.trim();
+    const walletInfo = {
+      walletAddress,
     };
-    Meteor.call('updateEmailInfo', emailInfo, (err, result) => {
+    Meteor.call('updateWalletInfo', walletInfo, (err, result) => {
       if (err) {
-        console.log('updateEmailInfo ERR:', err);
+        console.log('updateWalletInfo ERR:', err);
         this.setState({
           feedbackMessage: `ERROR: ${err.reason}`,
           feedbackMessageType: 'danger',
         });
       } else {
-        console.log('updateEmailInfo:', result);
+        console.log('updateWalletInfo:', result);
         this.setState({
-          feedbackMessage: 'Email Address Saved!',
+          feedbackMessage: 'Wallet Address Saved!',
           feedbackMessageType: 'success',
         });
-        this.props.saveEmailInfoState(emailInfo)
+        this.props.saveWalletInfoState(walletInfo)
         setTimeout(() => {
           this.setState({
             feedbackMessage: '',
@@ -64,7 +63,7 @@ export default class EmailInfoComp extends Component {
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
     return (
-      <div id="email-info-comp">
+      <div id="wallet-info-comp">
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
@@ -80,20 +79,20 @@ export default class EmailInfoComp extends Component {
               >
                 <div className="form-group">
                   <input
-                    type="email"
-                    id="email-info"
+                    type="text"
+                    id="wallet-address"
                     className="form-control input-lg"
-                    placeholder="member email"
+                    placeholder="wallet address"
                     onChange={this.onChangeInput}
-                    value={this.state.email}
+                    value={this.state.walletAddress}
                   />
                 </div>
                 <div className="form-group">
                   <input
                     type="submit"
-                    id="email-info-button"
+                    id="wallet-info-button"
                     className="btn btn-lg btn-primary btn-block"
-                    value="SAVE EMAIL ADDRESS"
+                    value="SAVE WALLET ADDRESS"
                   />
                 </div>
               </form>

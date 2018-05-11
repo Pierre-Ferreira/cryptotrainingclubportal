@@ -38,6 +38,11 @@ const UserInfo = (state = initialState, action) => {
         lastName: action.userPersonalInfo.lastName,
         cellNo: action.userPersonalInfo.cellNo,
       };
+    case types.SAVE_WALLET_INFO:
+      return {
+        ...state,
+        walletAddress: action.walletInfo.walletAddress,
+      };
     case types.SAVE_EMAIL_INFO:
       return {
         ...state,
