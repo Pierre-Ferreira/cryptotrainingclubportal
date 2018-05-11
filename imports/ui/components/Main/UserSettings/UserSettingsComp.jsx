@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PersonalInfoContainer from '../../../containers/Main/UserSettings/PersonalInfoContainer';
+import EmailInfoContainer from '../../../containers/Main/UserSettings/EmailInfoContainer';
 import './UserSettingsComp.less';
 
 const UserSettingsComp = (props) => {
@@ -14,13 +15,15 @@ const UserSettingsComp = (props) => {
             </div>
 
             <div className="col-md-8 offset-md-2">
+              <hr />
               <h2>Personal Info</h2>
               <PersonalInfoContainer />
               <hr />
             </div>
 
-            <div className="col-md-12">
+            <div className="col-md-8 offset-md-2">
               <h2>Email</h2>
+              <EmailInfoContainer />
               <hr />
             </div>
 

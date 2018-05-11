@@ -48,10 +48,13 @@ export default class AuthenticatedNavigationLinksComp extends Component {
         <div id="clients-menu-items">
           <NavDropdown eventKey={3} title={this.props.username} id="basic-nav-dropdown">
             <MenuItem eventKey="1">
+              <NavLink to="/myteam">My Team</NavLink>
+            </MenuItem>
+            <MenuItem eventKey="2">
               <NavLink to="/settings">Settings</NavLink>
             </MenuItem>
             <MenuItem divider />
-            <MenuItem eventKey="2">
+            <MenuItem eventKey="3">
               <NavLink to="/auth/login" onClick={this.logoutFN}>Logout</NavLink>
             </MenuItem>
 

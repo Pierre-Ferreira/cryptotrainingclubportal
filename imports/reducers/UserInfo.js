@@ -31,6 +31,11 @@ const UserInfo = (state = initialState, action) => {
         joinedDate: action.userInfo.joinedDate,
         active: action.userInfo.active,
       };
+    case types.SAVE_EMAIL_INFO:
+      return {
+        ...state,
+        email: action.emailInfo.emailNew,
+      };
     default:
       return state;
   }

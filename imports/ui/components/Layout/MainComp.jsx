@@ -11,6 +11,7 @@ import blockchainAPIPaymentsContainer from '../../containers/Admin/blockchainAPI
 import HomepageComp from '../Main/HomepageComp';
 import WelcomeContainer from '../../containers/Main/WelcomeContainer';
 import UserSettingsComp from '../Main/UserSettings/UserSettingsComp';
+import MyTeamComp from '../Main/MyTeamComp';
 import SignupContainer from '../../containers/Auth/SignupContainer';
 import LoginContainer from '../../containers/Auth/LoginContainer';
 import ResetPasswordContainer from '../../containers/Auth/ResetPasswordContainer';
@@ -48,6 +49,7 @@ export default class MainPage extends Component {
               <PublicRouteComp exact path="/auth/verified-email" component={VerifyEmailContainer} {...this.props} />
               <AuthenticatedRouteComp exact path="/main/welcome" component={WelcomeContainer} {...this.props} />
               <AuthenticatedRouteComp exact path="/settings" component={UserSettingsComp} {...this.props} />
+              <AuthenticatedRouteComp exact path="/myteam" component={MyTeamComp} {...this.props} />
               <Redirect to="/" />
             </Switch>
           </div>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Link } from 'react-router-dom';
 import { Alert, Button } from 'react-bootstrap';
-import { Accounts } from 'meteor/accounts-base';
 import './PersonalInfoComp.less';
 
 export default class PersonalInfoComp extends Component {
@@ -73,6 +71,12 @@ export default class PersonalInfoComp extends Component {
           feedbackMessage: 'Personal Info Saved!',
           feedbackMessageType: 'success',
         });
+        setTimeout(() => {
+          this.setState({
+            feedbackMessage: '',
+            feedbackMessageType: '',
+          });
+        }, 3000);
       }
     });
   }
