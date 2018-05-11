@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import moment from 'moment/moment';
 import PersonalInfoComp from '../../../components/Main/UserSettings/PersonalInfoComp';
 
 const mapTrackerToProps = (state, props) => {
@@ -12,12 +11,12 @@ const mapTrackerToProps = (state, props) => {
 function mapStateToProps(state) {
   return {
     userInfo: state.UserInfo,
-    firstName: state.UserPersonalInfo.firstName,
-    lastName: state.UserPersonalInfo.lastName,
-    cellNo: state.UserPersonalInfo.cellNo,
-    clcNo: state.UserInfo.clcNo,
-    username: state.UserInfo.username,
-    joinedDate: moment(state.UserInfo.joinedDate).format('Do MMM YYYY'),
+    // firstName: state.UserPersonalInfo.firstName,
+    // lastName: state.UserPersonalInfo.lastName,
+    // cellNo: state.UserPersonalInfo.cellNo,
+    // clcNo: state.UserInfo.clcNo,
+    // username: state.UserInfo.username,
+    // joinedDate: moment(state.UserInfo.joinedDate).format('Do MMM YYYY'),
   };
 }
 

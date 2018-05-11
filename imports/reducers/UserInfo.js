@@ -31,6 +31,13 @@ const UserInfo = (state = initialState, action) => {
         joinedDate: action.userInfo.joinedDate,
         active: action.userInfo.active,
       };
+    case types.SAVE_USER_PERSONAL_INFO:
+      return {
+        ...state,
+        firstName: action.userPersonalInfo.firstName,
+        lastName: action.userPersonalInfo.lastName,
+        cellNo: action.userPersonalInfo.cellNo,
+      };
     case types.SAVE_EMAIL_INFO:
       return {
         ...state,

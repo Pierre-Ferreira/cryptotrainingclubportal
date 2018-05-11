@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Alert, Button } from 'react-bootstrap';
+import moment from 'moment/moment';
 import './PersonalInfoComp.less';
 
 export default class PersonalInfoComp extends Component {
@@ -8,18 +9,21 @@ export default class PersonalInfoComp extends Component {
     super(props);
     this.state = {
       feedbackMessage: '',
+      firstName: '',
+      lastName: '',
+      cellNo: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
   }
 
   componentWillMount() {
-    const personalInfo = {
+    this.setState({
       firstName: this.props.userInfo.firstName,
       lastName: this.props.userInfo.lastName,
       cellNo: this.props.userInfo.cellNo,
-    };
-    this.props.saveUserPersonalInfoState(personalInfo);
+    });
+
     let introducerInfoStr = '';
     Meteor.call('getIntroducerInfoDB', this.props.userInfo.introducersUserId, (err, result) => {
       if (err) {
@@ -39,12 +43,17 @@ export default class PersonalInfoComp extends Component {
     const firstName = document.getElementById('personal-info-firstname').value;
     const lastName = document.getElementById('personal-info-surname').value;
     const cellNo = document.getElementById('personal-info-cellno').value;
-    const personalInfo = {
+    this.setState({
       firstName,
       lastName,
       cellNo,
-    };
-    this.props.saveUserPersonalInfoState(personalInfo);
+    });
+    // const personalInfo = {
+    //   firstName,
+    //   lastName,
+    //   cellNo,
+    // };
+    // this.props.saveUserPersonalInfoState(personalInfo);
   }
 
   handleSubmit(e) {
@@ -54,9 +63,9 @@ export default class PersonalInfoComp extends Component {
       feedbackMessageType: 'success',
     });
     const personalInfo = {
-      firstName: this.props.firstName,
-      lastName: this.props.lastName,
-      cellNo: this.props.cellNo,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      cellNo: this.state.cellNo,
     };
     Meteor.call('updateUserPersonalInfo', personalInfo, (err, result) => {
       if (err) {
@@ -71,6 +80,7 @@ export default class PersonalInfoComp extends Component {
           feedbackMessage: 'Personal Info Saved!',
           feedbackMessageType: 'success',
         });
+        this.props.saveUserPersonalInfoState(personalInfo);
         setTimeout(() => {
           this.setState({
             feedbackMessage: '',
@@ -83,6 +93,7 @@ export default class PersonalInfoComp extends Component {
 
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
+    const joinedDate = moment(this.props.userInfo.joinedDate).format('Do MMM YYYY');
     return (
       <div id="personal-info-comp">
         <div className="container">
@@ -100,17 +111,17 @@ export default class PersonalInfoComp extends Component {
               >
                 <div className="form-group">
                   <h3>
-                    <span className="immutable-info-title">CLC No:</span> {this.props.clcNo}
+                    <span className="immutable-info-title">Member No:</span> {this.props.userInfo.clcNo}
                   </h3>
                 </div>
                 <div className="form-group">
                   <h3>
-                    <span className="immutable-info-title">Username:</span> {this.props.username}
+                    <span className="immutable-info-title">Username:</span> {this.props.userInfo.username}
                   </h3>
                 </div>
                 <div className="form-group">
                   <h3>
-                    <span className="immutable-info-title">Joined Date:</span> {this.props.joinedDate}
+                    <span className="immutable-info-title">Joined Date:</span> {joinedDate}
                   </h3>
                 </div>
                 <div className="form-group">
@@ -125,7 +136,7 @@ export default class PersonalInfoComp extends Component {
                     className="form-control input-lg"
                     placeholder="member name"
                     onChange={this.onChangeInput}
-                    value={this.props.firstName}
+                    value={this.state.firstName}
                   />
                 </div>
                 <div className="form-group">
@@ -135,7 +146,7 @@ export default class PersonalInfoComp extends Component {
                     className="form-control input-lg"
                     placeholder="member surname"
                     onChange={this.onChangeInput}
-                    value={this.props.lastName}
+                    value={this.state.lastName}
                   />
                 </div>
                 <div className="form-group">
@@ -145,7 +156,7 @@ export default class PersonalInfoComp extends Component {
                     className="form-control input-lg"
                     placeholder="cell no"
                     onChange={this.onChangeInput}
-                    value={this.props.cellNo}
+                    value={this.state.cellNo}
                   />
                 </div>
                 <div className="form-group">

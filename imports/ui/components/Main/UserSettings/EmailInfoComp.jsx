@@ -8,6 +8,7 @@ export default class EmailInfoComp extends Component {
     super(props);
     this.state = {
       feedbackMessage: '',
+      email: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
