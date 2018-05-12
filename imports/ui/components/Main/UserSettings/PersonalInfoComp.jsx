@@ -101,11 +101,6 @@ export default class PersonalInfoComp extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-12">
-              {(feedbackMessage) ?
-                <Alert bsStyle={feedbackMessageType}>
-                  {feedbackMessage}
-                </Alert>
-              : null }
               <form
                 id="personal-info-form"
                 className="form center-block"
@@ -131,6 +126,12 @@ export default class PersonalInfoComp extends Component {
                     <span className="immutable-info-title">Introducer:</span> {this.state.introducerInfoStr}
                   </h3>
                 </div>
+                <hr />
+                {(feedbackMessage) ?
+                  <Alert bsStyle={feedbackMessageType}>
+                    {feedbackMessage}
+                  </Alert>
+                : null }
                 <div className="form-group">
                   <input
                     type="text"

@@ -9,7 +9,11 @@ Meteor.methods({
         fields: {
           firstName: 1,
           lastName: 1,
+          cellNo: 1,
+          emails: 1,
+          active: 1,
           clcNo: 1,
+          joinedDate: 1,
         },
       },
     ).fetch();
